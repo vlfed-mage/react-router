@@ -11,3 +11,5 @@ ReactDOM.render(
 	</StrictMode>,
 	document.getElementById('root')
 );
+
+module?.hot.accept();

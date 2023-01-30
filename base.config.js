@@ -16,6 +16,7 @@ module.exports = (env) => {
 
     const config = {
         devtool: 'source-map',
+        target: 'web',
         mode: env.WEBPACK_SERVE ? 'development' : 'production',
         performance: {
             hints: false,
