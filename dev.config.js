@@ -1,8 +1,5 @@
 const webpack = require('webpack');
 const routes = require('./configs/routes');
-const images = require("./configs/images");
-
-const plugins = [images.imageMinPlugin];
 
 module.exports = {
     devServer: {
@@ -10,8 +7,6 @@ module.exports = {
         compress: true,
         hot: true,
         open: true,
-        port: 9000,
-        watchContentBase: true,
         proxy: {
             '/api': 'http://localhost:5000',
         },
@@ -34,9 +29,9 @@ module.exports = {
         },
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.SourceMapDevToolPlugin({
             filename: "[file].map"
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ]
 }
