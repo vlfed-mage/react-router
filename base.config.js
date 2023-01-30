@@ -6,6 +6,7 @@ const pug = require('./configs/pug');
 const images = require('./configs/images');
 const fonts = require('./configs/fonts');
 const js = require('./configs/js');
+const jsx = require('./configs/jsx');
 const { isDev } = require('./helpers/env');
 
 module.exports = (env) => {
@@ -14,6 +15,7 @@ module.exports = (env) => {
     plugins.push(pug.beautifyHtml);
 
     const config = {
+        devtool: 'source-map',
         mode: env.WEBPACK_SERVE ? 'development' : 'production',
         performance: {
             hints: false,
@@ -26,6 +28,7 @@ module.exports = (env) => {
         module: {
             rules: [
                 js.loader,
+                jsx.loader,
                 scss.loader,
                 pug.loader,
                 images.loader,
