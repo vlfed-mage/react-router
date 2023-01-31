@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
-import Products from "../products";
-import Admin from "../admin";
-import Nav from "../nav";
+import Products from '../products';
+import Admin from '../admin';
+import Nav from '../nav';
+import ProductList from '../product-list'
 
 const appStyleWrapper = css`
 	margin: 50px auto;
@@ -25,7 +26,9 @@ const App = () => {
 			<div className='container'>
 				<Nav />
 				<Routes>
-					<Route path='/' element={ <Products /> } />
+					<Route path='/' element={ <Products /> } >
+						<Route path='/' element={ <ProductList /> } />
+					</Route>
 					<Route path='/admin' element={ <Admin /> } />
 					<Route path='*' element={ <Navigate to='/' /> } />
 				</Routes>
