@@ -4,6 +4,7 @@ import { css } from "@emotion/css";
 
 import Products from "../products";
 import Admin from "../admin";
+import NotFound from "../not-found";
 
 const appStyleWrapper = css`
 	margin: 50px auto;
@@ -20,11 +21,12 @@ const appStyleWrapper = css`
 
 const App = () => {
 	return (
-		<div className={ appStyleWrapper }>
+		<div className={ appStyleWrapper } >
 			<div className='container'>
 				<Routes>
 					<Route path='' element={<Products />} />
 					<Route path='/test' element={<Admin />} />
+					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</div>
 		</div>
