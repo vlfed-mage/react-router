@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-export default class App extends Component {
-	render() {
-		return <div>test jsx!</div>
-	}
-}
+const App = () => {
+	return (
+		<Routes>
+			<Route path='' element={<div>base</div>} />
+			<Route path='/test' element={<div>test</div>} />
+		</Routes>
+	);
+};
+
+export default App;
