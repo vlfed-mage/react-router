@@ -1,13 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     return (
         <nav className='nav' >
             <NavLink // activeClassName and activeStyle have been removed from NavLinkProps
-                to='/'
-                className={ ({ isActive }) => isActive ? 'active' : null }
-                end >
+                to='/' end >
                 Products
             </NavLink>
             <NavLink
