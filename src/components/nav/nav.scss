@@ -1,0 +1,16 @@
+.nav {
+    margin: 0 0 15px;
+
+    a {
+        color: $base;
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        border: 2px solid transparent;
+
+        &.active {
+            color: $brandPrimary;
+            border-color: $brandPrimary;
+        }
+    }
+}
