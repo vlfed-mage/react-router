@@ -1,14 +1,22 @@
 html {
     min-height: 100%;
     display: flex;
+
+    * {
+        box-sizing: border-box;
+    }
 }
 
 body {
     display: flex;
     flex-direction: column;
-    color: $grayBase;
-    font-family: $fontFamilyBase;
+    font-family: 'Fira Sans', sans-serif;
     width: 100%;
+    background: #2a2c37;
+    color: #50fa7b;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 header {
