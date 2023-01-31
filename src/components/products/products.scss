@@ -1,0 +1,9 @@
+.product {
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+        width: 125px;
+        margin: 0 auto 125px;
+    }
+}
