@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { css } from "@emotion/css";
 
 import Products from "../products";
@@ -24,9 +24,9 @@ const App = () => {
 		<div className={ appStyleWrapper } >
 			<div className='container'>
 				<Routes>
-					<Route path='' element={<Products />} />
-					<Route path='/test' element={<Admin />} />
-					<Route path='*' element={<NotFound />} />
+					<Route path='' element={ <Products /> } />
+					<Route path='/test' element={ <Admin /> } />
+					<Route path='*' element={ <Navigate to='/' /> } />
 				</Routes>
 			</div>
 		</div>
