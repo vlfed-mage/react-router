@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-import Services from '../../services';
+import Services from '../../../services';
 
 import ProductCard from '../product-card'
 
 const ProductsList = () => {
-    const { getProducts } = Services();
+    const { getData } = Services();
     const [ products, setProducts ] = useState(null);
 
     useEffect(() => {
-        getProducts()
+        getData()
             .then((data) => setProducts(data))
     }, [])
 

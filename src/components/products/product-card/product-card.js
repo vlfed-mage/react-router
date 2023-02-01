@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
         <Link to={ id } className='product-card' >
             <img
                 className='product-card-icon'
-                src={ require(`../../images/products/${ id }.svg`) }
+                src={ require(`../../../images/products/${ id }.svg`) }
                 alt={ name } />
             <div>
                 <h2 className='product-card-name'>{ name }</h2>
