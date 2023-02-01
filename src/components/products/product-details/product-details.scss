@@ -1,0 +1,41 @@
+.product {
+    color: $base;
+    background: #2a2c37;
+    border-radius: 6px;
+    padding: 15px;
+
+    &-title {
+        display: flex;
+    }
+
+    &-name {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    &-price {
+        color: $brandPrimary;
+        font-weight: 600;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    &-icon {
+        width: 50px;
+        margin-right: 15px;
+    }
+
+    &-button {
+        border: 2px solid $brandPrimary;
+        color: $brandPrimary;
+        background: none;
+        padding: 10px 15px;
+        margin-right: 5px;
+        border-radius: 6px;
+        outline: 0;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+}
