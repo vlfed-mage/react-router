@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import logo from '../../images/logo.svg'
-
 const Products = () => {
     return (
         <div className='products'>
-            <img src={ logo } alt='Ultimate burgers' className='logo'/>
+            <img
+                className='logo'
+                src={ require('../../images/logo.svg') }
+                alt='Ultimate burgers' />
             <Outlet />
         </div>
     );
