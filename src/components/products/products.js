@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg'
 
 const Products = () => {
     return (
-        <div className='product'>
+        <div className='products'>
             <img src={ logo } alt='Ultimate burgers' className='logo'/>
             <Outlet />
         </div>
