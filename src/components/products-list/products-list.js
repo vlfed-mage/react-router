@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import Services from "../../services";
+import Services from '../../services';
 
-const ProductList = () => {
+import ProductCard from '../product-card'
+
+const ProductsList = () => {
     const { getProducts } = Services();
     const [ products, setProducts ] = useState(null);
 
@@ -16,10 +18,9 @@ const ProductList = () => {
     }
 
     const productList = products.map((product) => {
-        const { name, id } = product;
         return (
-            <li key={ id }>
-                { name }
+            <li key={ product.id }>
+                <ProductCard product={ product } />
             </li>
         )
     });
@@ -29,4 +30,4 @@ const ProductList = () => {
     )
 };
 
-export default ProductList;
+export default ProductsList;

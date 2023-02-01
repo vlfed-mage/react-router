@@ -5,7 +5,7 @@ import { css } from '@emotion/css';
 import Products from '../products';
 import Admin from '../admin';
 import Nav from '../nav';
-import ProductList from '../product-list'
+import ProductsList from '../products-list'
 
 const appStyleWrapper = css`
 	margin: 50px auto;
@@ -27,7 +27,7 @@ const App = () => {
 				<Nav />
 				<Routes>
 					<Route path='/' element={ <Products /> } >
-						<Route path='/' element={ <ProductList /> } />
+						<Route path='/' element={ <ProductsList /> } />
 					</Route>
 					<Route path='/admin' element={ <Admin /> } />
 					<Route path='*' element={ <Navigate to='/' /> } />
