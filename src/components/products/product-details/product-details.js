@@ -15,7 +15,7 @@ const ProductDetails = () => {
             .then((data) => setProduct(data))
             .catch((error) => {
                 console.warn(error);
-                navigate('/');
+                navigate('/', { replace: true, state: { id } });
             })
     },[id])
 
