@@ -39,6 +39,12 @@ const ProductDetails = () => {
             </div>
             <div className='product-description'>
                 <p>{ description }</p>
+                <button
+                    type="button"
+                    className="product-button"
+                    onClick={ () => navigate(-1) } >
+                    Go back
+                </button>
             </div>
         </div>
     );
