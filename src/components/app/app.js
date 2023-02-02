@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 
 import Header from "../header/header";
+import ProtectedRoute from '../protected-route'
 import Admin from '../admin';
 import { Products } from '../products'
 
@@ -20,13 +21,19 @@ const appStyleWrapper = css`
 `;
 
 const App = () => {
+	const [ authenticated ] = useState(true);
+
 	return (
 		<div className={ appStyleWrapper } >
 			<div className='container'>
 				<Header />
 				<Routes>
 					<Route path='/*' element={ <Products /> } />
-					<Route path='/admin' element={ <Admin /> } />
+					<ProtectedRoute // it doesn't work in the newest version of react-router
+						path='/admin'
+						element={ <Admin /> }
+						authenticated={ authenticated }
+						redirectTo='/' />
 					<Route path='*' element={ <Navigate to='/' /> } />
 				</Routes>
 			</div>
