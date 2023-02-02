@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Services from '../../../services';
 
 const ProductDetails = () => {
     const { getData } = Services(),
     { id } = useParams(),
-    [ product, setProduct ] = useState(null);
+    [ product, setProduct ] = useState(null),
+
+    navigate = useNavigate();
 
     useEffect(() => {
         getData(id)
             .then((data) => setProduct(data))
+            .catch((error) => {
+                console.warn(error);
+                navigate('/');
+            })
     },[id])
 
     if (!product) {
@@ -28,7 +34,7 @@ const ProductDetails = () => {
                     alt={ name } />
                 <div>
                     <h1 className='product-name'>{ name }</h1>
-                    <p className='product-price'>{ `$${price / 100}` }</p>
+                    <p className='product-price'>{`$${ price / 100 }`}</p>
                 </div>
             </div>
             <div className='product-description'>

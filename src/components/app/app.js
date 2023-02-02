@@ -2,11 +2,9 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 
-import Products from '../products';
 import Admin from '../admin';
-import Nav from '../nav';
-import ProductsList from '../products/products-list'
-import ProductsDetails from '../products/product-details'
+import { Products, ProductsList, ProductDetails } from '../products'
+import Header from "../header/header";
 
 const appStyleWrapper = css`
 	margin: 50px auto;
@@ -25,11 +23,11 @@ const App = () => {
 	return (
 		<div className={ appStyleWrapper } >
 			<div className='container'>
-				<Nav />
+				<Header />
 				<Routes>
 					<Route path='/' element={ <Products /> } >
 						<Route path='/' element={ <ProductsList /> } />
-						<Route path=':id' element={ <ProductsDetails /> } />
+						<Route path=':id' element={ <ProductDetails /> } />
 					</Route>
 					<Route path='/admin' element={ <Admin /> } />
 					<Route path='*' element={ <Navigate to='/' /> } />
