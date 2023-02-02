@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 
 import Header from "../header/header";
-import ProtectedRoute from '../protected-route'
 import Admin from '../admin';
 import { Products } from '../products'
 
@@ -21,7 +20,7 @@ const appStyleWrapper = css`
 `;
 
 const App = () => {
-	const [ authenticated ] = useState(true);
+	const [ authenticated ] = useState(false);
 
 	return (
 		<div className={ appStyleWrapper } >
@@ -29,11 +28,7 @@ const App = () => {
 				<Header />
 				<Routes>
 					<Route path='/*' element={ <Products /> } />
-					<ProtectedRoute // it doesn't work in the newest version of react-router
-						path='/admin'
-						element={ <Admin /> }
-						authenticated={ authenticated }
-						redirectTo='/' />
+					<Route path='/admin' element={ authenticated ? <Admin /> : <Navigate to='/' /> } />
 					<Route path='*' element={ <Navigate to='/' /> } />
 				</Routes>
 			</div>
