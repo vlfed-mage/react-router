@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
 
 import Services from '../../../services';
 
@@ -8,7 +9,15 @@ const ProductsList = () => {
     const { getData } = Services();
     const [ products, setProducts ] = useState(null);
 
+    const location = useLocation();
+
     useEffect(() => {
+        console.log(location);
+        const { state, pathname } = location;
+        if (state) {
+            console.warn(`Nothing found for ${pathname}${ state.id }` )
+        }
+
         getData()
             .then((data) => setProducts(data))
     }, [])
