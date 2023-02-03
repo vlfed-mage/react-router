@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ProductDetails, ProductsList } from "./index";
+import { ProductDetails, ProductsList } from './index';
 
 const Products = () => {
     return (
