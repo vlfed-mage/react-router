@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": "the-wedge",
-      "name": "The Wedge",
-      "description": "Tasty sandwich to max your tastebuds.",
-      "price": 699
-    },
-    {
       "id": "spice-dog",
       "name": "Spice Dog",
       "description": "Prepare the spice, it's very nice.",
@@ -47,6 +41,12 @@
       "name": "Big Cheese",
       "price": 899,
       "description": "Large burger, all the cheese."
+    },
+    {
+      "id": "the-wedge",
+      "name": "The Wedge",
+      "price": 888,
+      "description": "Tasty sandwich to max your tastebuds."
     }
   ]
 }
