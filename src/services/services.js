@@ -6,9 +6,7 @@ const Services = () => {
     const { pathname } = useLocation();
 
     const _getData = async (id = '') => {
-        console.log(pathname);
         const data = await fetch(`${url}${pathname.replace('/admin', '/products')}`);
-        console.log(data)
 
         if (!data.ok) {
             throw new Error('Something get terrible wrong')
