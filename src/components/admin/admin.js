@@ -8,7 +8,7 @@ const Admin = () => {
         <div className='admin'>
             <div className='admin-header'>
                 <h1>Admin panel</h1>
-                <Link to="new" className="admin-new">
+                <Link to='new' className='admin-new'>
                     New
                 </Link>
             </div>
