@@ -1,15 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
 
+import Services from '../../../services';
+
 const ProductEdit = () => {
-    const [form, setForm] = useState({
+    const { setData } = Services(),
+
+    [form, setForm] = useState({
         id: '',
         name: '',
         price: '',
         description: ''
-    });
+    }),
 
-    const updateFields = (target) => {
+    updateFields = (target) => {
         const { name, value } = target;
         setForm({
             ...form,
@@ -17,10 +21,23 @@ const ProductEdit = () => {
                 ? isNaN(parseInt(value)) ? '' : parseInt(value)
                 : value
         })
+    },
+
+    onCreateProduct = async () => {
+        try {
+            const createdProduct = await setData(form)
+            console.log(createdProduct);
+        } catch (error) {
+            console.warn(error);
+        }
     }
 
-    const fields = ['id', 'name', 'price'];
-    const mapFields = fields.map((field) => {
+    if (!form) {
+        return <span>Loading</span>
+    }
+
+    const fields = ['id', 'name', 'price'],
+    mapFields = fields.map((field) => {
         return (
             <input
                 key={ field }
@@ -46,6 +63,12 @@ const ProductEdit = () => {
                     onChange={ ({ target }) => updateFields(target) }
                     value={ form ? form.description: '' }
                 />
+                <button
+                    type='button'
+                    className='product-edit-button'
+                    onClick={ onCreateProduct } >
+                    Create new product
+                </button>
             </form>
         </>
     );
