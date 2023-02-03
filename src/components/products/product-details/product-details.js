@@ -40,8 +40,8 @@ const ProductDetails = () => {
             <div className='product-description'>
                 <p>{ description }</p>
                 <button
-                    type="button"
-                    className="product-button"
+                    type='button'
+                    className='product-button'
                     onClick={ () => navigate(-1) } >
                     Go back
                 </button>

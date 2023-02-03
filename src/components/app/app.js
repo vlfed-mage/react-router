@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { css } from '@emotion/css';
 
-import Header from "../header/header";
+import Header from '../header/header';
 import Admin from '../admin';
 import { Products } from '../products'
 
@@ -20,15 +20,16 @@ const appStyleWrapper = css`
 `;
 
 const App = () => {
-	const [ authenticated ] = useState(false);
+	const [ authenticated ] = useState(true);
 
 	return (
 		<div className={ appStyleWrapper } >
 			<div className='container'>
 				<Header />
 				<Routes>
-					<Route path='/*' element={ <Products /> } />
-					<Route path='/admin' element={ authenticated ? <Admin /> : <Navigate to='/' /> } />
+					<Route path='/' element={ <div>Home page</div> } />
+					<Route path='/products/*' element={ <Products /> } />
+					<Route path='/admin/*' element={ authenticated ? <Admin /> : <Navigate to='/' /> } />
 					<Route path='*' element={ <Navigate to='/' /> } />
 				</Routes>
 			</div>

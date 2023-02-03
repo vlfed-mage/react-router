@@ -1,13 +1,15 @@
-import React from "react";
-import Nav from "../nav";
+import React from 'react';
+import Nav from '../nav';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
         <header className='header'>
-            <img
-                className='logo'
-                src={ require('../../images/logo.svg') }
-                alt='Ultimate burgers' />
+            <NavLink to='/' className='logo'>
+                <img
+                    src={ require('../../images/logo.svg') }
+                    alt='Ultimate burgers' />
+            </NavLink>
             <Nav />
         </header>
     );

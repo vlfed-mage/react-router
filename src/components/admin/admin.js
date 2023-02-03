@@ -1,6 +1,6 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
-import { ProductsList } from "../products";
+import { Route, Routes } from 'react-router-dom';
+import { ProductsList } from '../products';
 
 const Admin = () => {
     return (

@@ -5,7 +5,7 @@ const Nav = () => {
     return (
         <nav className='nav' >
             <NavLink // activeClassName and activeStyle have been removed from NavLinkProps
-                to='/' end >
+                to='/products' end >
                 Products
             </NavLink>
             <NavLink
