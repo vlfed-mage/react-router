@@ -1,0 +1,16 @@
+.admin {
+    &-header {
+        display: flex;
+        align-items: center;
+    }
+    &-new {
+        text-decoration: none;
+        border: 2px solid #fff;
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-left: auto;
+    }
+}

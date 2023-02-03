@@ -1,13 +1,20 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { ProductsList } from '../products';
+import { Link, Route, Routes } from 'react-router-dom';
+
+import { ProductsList, ProductEdit } from '../products';
 
 const Admin = () => {
     return (
-        <div className='admin-panel'>
-            <h1>Admin panel</h1>
+        <div className='admin'>
+            <div className='admin-header'>
+                <h1>Admin panel</h1>
+                <Link to="new" className="admin-new">
+                    New
+                </Link>
+            </div>
             <Routes>
                 <Route path='/' element={ <ProductsList /> } />
+                <Route path='/new' element={ <ProductEdit /> } />
             </Routes>
         </div>
     );

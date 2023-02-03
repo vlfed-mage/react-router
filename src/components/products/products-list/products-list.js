@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import Services from '../../../services';
 
-import ProductCard from '../product-card'
+import ProductCard from '../product-card/product-card'
 
 const ProductsList = () => {
     const { getData } = Services();
