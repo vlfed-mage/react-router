@@ -14,9 +14,9 @@ const ProductsList = () => {
     useEffect(() => {
         const { state, pathname } = location;
         if (state) {
-            console.warn(`Nothing found for ${pathname}${ state.id }` )
+            console.warn(`Nothing found for ${ pathname }${ state.id }` )
         }
-        getData()
+        getData('products')
             .then((data) => setProducts(data))
     }, [])
 
@@ -33,7 +33,9 @@ const ProductsList = () => {
     });
 
     return (
-        <ul className='products-list'>{ productList }</ul>
+        <ul className='products-list'>
+            { productList }
+        </ul>
     )
 };
 

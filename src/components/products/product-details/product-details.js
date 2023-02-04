@@ -11,7 +11,7 @@ const ProductDetails = () => {
     navigate = useNavigate();
 
     useEffect(() => {
-        getData(id)
+        getData('products', id)
             .then((data) => setProduct(data))
             .catch((error) => {
                 console.warn(error);

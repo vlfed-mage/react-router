@@ -1,13 +1,10 @@
-import { useLocation } from "react-router-dom";
-
 const Services = () => {
 
     const url = 'http://localhost:5000/api';
-    const { pathname } = useLocation();
 
     return {
-        getData: async (id = '') => {
-            const data = await fetch(`${url}${pathname.replace('/admin', '/products')}`);
+        getData: async (name, id = '') => {
+            const data = await fetch(`${url}/${name}/${id}`);
 
             if (!data.ok) {
                 throw new Error('Something get terrible wrong')
@@ -15,8 +12,8 @@ const Services = () => {
 
             return await data.json();
         },
-        setData: async (payload) => {
-            const response = await fetch(`${url}/products`, {
+        setData: async (name, payload) => {
+            const response = await fetch(`${url}/${name}`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
