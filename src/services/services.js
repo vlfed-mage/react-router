@@ -12,9 +12,9 @@ const Services = () => {
 
             return await data.json();
         },
-        setData: async (name, payload) => {
-            const response = await fetch(`${url}/${name}`, {
-                method: 'POST',
+        updateData: async (name, payload, method) => {
+            const response = await fetch(`${url}/${name}/${method === 'POST' ? '' : payload.id}`, {
+                method: method,
                 headers: {
                     'Content-type': 'application/json'
                 },
@@ -26,7 +26,7 @@ const Services = () => {
             }
 
             return await response.json();
-        }
+        },
     };
 };
 

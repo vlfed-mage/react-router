@@ -1,21 +1,31 @@
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Services from '../../../services';
 
 const ProductEdit = () => {
-    const { setData } = Services(),
+    const { updateData, getData } = Services(),
+    { id } = useParams(),
     navigate = useNavigate(),
 
-    [form, setForm] = useState({
-        id: '',
-        name: '',
-        price: '',
-        description: ''
-    }),
+    [form, setForm] = useState(null);
+    useEffect(() => {
+        setForm({
+            id: '',
+            name: '',
+            price: '',
+            description: ''
+        });
 
-    updateFields = (target) => {
+        if (id) {
+            getData('products', id)
+                .then((data) => setForm(data))
+                .catch((error) => navigate('/admin', { replace: true }))
+        }
+
+    }, [])
+
+    const updateFields = (target) => {
         const { name, value } = target;
         setForm({
             ...form,
@@ -27,15 +37,25 @@ const ProductEdit = () => {
 
     onProductCreate = async () => {
         try {
-            const { id } = await setData('products', form)
-            navigate(`/admin/${ id }`)
+            const createdProduct = await updateData('products', form, 'POST');
+            navigate(`/admin/${ createdProduct.id }`)
         } catch (error) {
             console.warn(error);
         }
-    }
+    },
+
+    onProductEdit = async () => {
+        try {
+            await updateData('products', form, 'PUT')
+            alert(`Updated ${ form.name }`)
+            navigate('/admin')
+        } catch (error) {
+            console.warn(error);
+        }
+    };
 
     if (!form) {
-        return <span>Loading</span>
+        return <span>Loading...</span>
     }
 
     const fields = ['id', 'name', 'price'],
@@ -54,11 +74,11 @@ const ProductEdit = () => {
     });
 
     // {
-    //     "id": "spice-dog",
-    //     "name": "Spice Dog",
-    //     "description": "Prepare the spice, it's very nice.",
-    //     "price": 799
-    // }
+    //     "id": "wild-water",
+    //     "name": "Wild Water",
+    //     "description": "Spring water, wild and watery.",
+    //     "price": 299
+    // },
 
     return (
         <>
@@ -76,7 +96,13 @@ const ProductEdit = () => {
                     type='button'
                     className='product-edit-button'
                     onClick={ onProductCreate } >
-                    Create new product
+                    Create
+                </button>
+                <button
+                    type='button'
+                    className='product-edit-button'
+                    onClick={ onProductEdit } >
+                    Edit
                 </button>
             </form>
         </>
