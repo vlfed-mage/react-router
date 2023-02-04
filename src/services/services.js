@@ -1,19 +1,31 @@
 const Services = () => {
 
-    const url = 'http://localhost:5000/api';
+    const bodyUrl = 'http://localhost:5000/api';
 
     return {
-        getData: async (name, id = '') => {
-            const data = await fetch(`${url}/${name}/${id}`);
+        getItem: async (name, id) => {
+            const response = await fetch(`${ bodyUrl }/${ name }/${ id }`);
 
-            if (!data.ok) {
-                throw new Error('Something get terrible wrong')
+            if (!response.ok) {
+                throw new Error('Something get terrible wrong in getItem')
             }
 
-            return await data.json();
+            return await response.json();
         },
+
+        getCollection: async (name) => {
+            const response = await fetch(`${ bodyUrl }/${ name }`);
+
+            if (!response.ok) {
+                throw new Error('Something get terrible wrong in getCollection')
+            }
+
+            return await response.json();
+        },
+
         updateData: async (name, payload, method) => {
-            const response = await fetch(`${url}/${name}/${method === 'POST' ? '' : payload.id}`, {
+            const url = `${ bodyUrl }/${ name }/${ method === 'POST' ? '' : payload.id }`;
+            const response = await fetch( url,{
                 method: method,
                 headers: {
                     'Content-type': 'application/json'
@@ -22,11 +34,24 @@ const Services = () => {
             });
 
             if (!response.ok) {
-                throw new Error('Something get terrible wrong')
+                throw new Error('Something get terrible wrong in updateData')
             }
 
             return await response.json();
         },
+
+        deleteData: async (name, id) => {
+            const url = `${ bodyUrl }/${ name }/${ id }`;
+            const response = await fetch( url,{
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error('Something get terrible wrong im deleteData');
+            }
+
+            return await response.json();
+        }
     };
 };
 

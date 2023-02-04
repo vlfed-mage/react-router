@@ -3,27 +3,29 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Services from '../../../services';
 
-const ProductEdit = () => {
-    const { updateData, getData } = Services(),
+const ProductEdit = ({ isEdit }) => {
+    const { deleteData, updateData, getItem} = Services(),
     { id } = useParams(),
     navigate = useNavigate(),
 
     [form, setForm] = useState(null);
-    useEffect(() => {
-        setForm({
-            id: '',
-            name: '',
-            price: '',
-            description: ''
-        });
 
-        if (id) {
-            getData('products', id)
-                .then((data) => setForm(data))
-                .catch((error) => navigate('/admin', { replace: true }))
+    useEffect(() => {
+        if (!isEdit) {
+            setForm({
+                id: '',
+                name: '',
+                price: '',
+                description: ''
+            });
+            return;
         }
 
-    }, [])
+        getItem('products', id)
+            .then((data) => setForm(data))
+            .catch((error) => navigate('/admin', { replace: true }))
+
+    }, [id])
 
     const updateFields = (target) => {
         const { name, value } = target;
@@ -36,22 +38,24 @@ const ProductEdit = () => {
     },
 
     onProductCreate = async () => {
-        try {
-            const createdProduct = await updateData('products', form, 'POST');
-            navigate(`/admin/${ createdProduct.id }`)
-        } catch (error) {
-            console.warn(error);
-        }
+        updateData('products', form, 'POST')
+            .catch((error) => console.warn(error));
     },
 
     onProductEdit = async () => {
-        try {
-            await updateData('products', form, 'PUT')
-            alert(`Updated ${ form.name }`)
-            navigate('/admin')
-        } catch (error) {
-            console.warn(error);
+        updateData('products', form, 'PUT')
+            .catch((error) => console.warn(error))
+    },
+
+    onProductDelete = async () => {
+        if (!window.confirm(`Delete ${ form.name }?`)) {
+            return;
         }
+
+        deleteData('products', form.id)
+            .catch((error) => console.warn(error));
+
+        navigate('/admin');
     };
 
     if (!form) {
@@ -73,13 +77,6 @@ const ProductEdit = () => {
         );
     });
 
-    // {
-    //     "id": "wild-water",
-    //     "name": "Wild Water",
-    //     "description": "Spring water, wild and watery.",
-    //     "price": 299
-    // },
-
     return (
         <>
             { JSON.stringify(form) }
@@ -92,18 +89,30 @@ const ProductEdit = () => {
                     onChange={ ({ target }) => updateFields(target) }
                     value={ form ? form.description: '' }
                 />
-                <button
-                    type='button'
-                    className='product-edit-button'
-                    onClick={ onProductCreate } >
-                    Create
-                </button>
-                <button
-                    type='button'
-                    className='product-edit-button'
-                    onClick={ onProductEdit } >
-                    Edit
-                </button>
+                { !isEdit && (
+                    <button
+                        type='button'
+                        className='product-edit-button'
+                        onClick={ onProductCreate } >
+                        Create
+                    </button>
+                ) }
+                { isEdit && (
+                    <>
+                        <button
+                            type='button'
+                            className='product-edit-button'
+                            onClick={ onProductEdit } >
+                            Edit
+                        </button>
+                        <button
+                            type='button'
+                            className='product-edit-button'
+                            onClick={ onProductDelete } >
+                            Delete
+                        </button>
+                    </>
+                ) }
             </form>
         </>
     );

@@ -6,7 +6,7 @@ import Services from '../../../services';
 import ProductCard from '../product-card/product-card'
 
 const ProductsList = () => {
-    const { getData } = Services();
+    const { getCollection } = Services();
     const [ products, setProducts ] = useState(null);
 
     const location = useLocation();
@@ -16,7 +16,7 @@ const ProductsList = () => {
         if (state) {
             console.warn(`Nothing found for ${ pathname }${ state.id }` )
         }
-        getData('products')
+        getCollection('products')
             .then((data) => setProducts(data))
     }, [])
 
