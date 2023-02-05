@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import Services from '../../../services';
 
 import ProductCard from '../product-card/product-card'
 
 const ProductsList = () => {
-    const { getCollection } = Services();
-    const [ products, setProducts ] = useState(null);
+    const { getCollection } = Services(),
+    [ searchParams ] = useSearchParams(),
+    [ products, setProducts ] = useState(null),
 
-    const location = useLocation();
+    location = useLocation();
 
     useEffect(() => {
         const { state, pathname } = location;
         if (state) {
             console.warn(`Nothing found for ${ pathname }${ state.id }` )
         }
+        console.log(Object.fromEntries([...searchParams])); // looks like ?sort=name in browser address bar
         getCollection('products')
             .then((data) => setProducts(data))
     }, [])
