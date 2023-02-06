@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 
-import { ProductsList, ProductEdit } from '../products';
+import Loadable from '../loadable';
+
+const ProductsList = Loadable(lazy(() => import('../products/products-list')));
+const ProductEdit = Loadable(lazy(() => import('../products/product-edit')));
 
 const Admin = () => {
     return (
