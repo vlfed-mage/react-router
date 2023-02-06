@@ -7,26 +7,51 @@ import ProductCard from '../product-card/product-card'
 
 const ProductsList = () => {
     const { getCollection } = Services(),
-    [ searchParams ] = useSearchParams(),
+    [ searchParams, setSearchParams ] = useSearchParams(),
     [ products, setProducts ] = useState(null),
 
     location = useLocation();
+
+    const sortProductsFromParams = (data, params) => {
+        if (!Object.keys(params).length) {
+            setProducts(data);
+            return;
+        }
+
+        const sorted = [...data].sort((x, y) => {
+            const { sort, order } = params;
+            switch (order) {
+                case 'ascending':
+                    return x[sort] > y[sort] ? 1 : -1;
+                case 'descending':
+                    return x[sort] < y[sort] ? 1 : -1;
+                default:
+                    return 0;
+            }
+        });
+
+        setProducts(sorted);
+    };
 
     useEffect(() => {
         const { state, pathname } = location;
         if (state) {
             console.warn(`Nothing found for ${ pathname }${ state.id }` )
         }
-        console.log(Object.fromEntries([...searchParams])); // looks like ?sort=name in browser address bar
         getCollection('products')
-            .then((data) => setProducts(data))
+            .then((data) => {
+                // Object.fromEntries([...searchParams])  looks like ?sort=name in browser address bar
+                const params = Object.fromEntries([...searchParams]);
+                sortProductsFromParams(data, params)
+            })
     }, [])
 
-    const updateParams = ({ target }) => {
-        const { name, value } = target,
-        currentParams = Object.fromEntries([...searchParams]),
+    const updateParams = ({ target: { name, value } }) => {
+        const currentParams = Object.fromEntries([...searchParams]),
         newParams = { ...currentParams, [name]: value };
-        console.log(newParams);
+
+        setSearchParams(newParams);
+        sortProductsFromParams(products, newParams);
     }
 
     if (!products) {
