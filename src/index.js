@@ -4,14 +4,14 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes } from "react-router-dom";
 
-import App from "./components/app";
 import ScrollToTop from './components/scroll-to-top';
+import AppWrapper from './components/app/app-wrapper';
 
 ReactDOM.render(
 	<StrictMode>
 		<Router>
 			<ScrollToTop />
-			<App />
+			<AppWrapper />
 		</Router>
 	</StrictMode>,
 	document.getElementById('root')
