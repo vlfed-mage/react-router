@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Services from '../../../services';
 
 const ProductEdit = () => {
     const { setData } = Services(),
+    navigate = useNavigate(),
 
     [form, setForm] = useState({
         id: '',
@@ -23,10 +25,10 @@ const ProductEdit = () => {
         })
     },
 
-    onCreateProduct = async () => {
+    onProductCreate = async () => {
         try {
-            const createdProduct = await setData(form)
-            console.log(createdProduct);
+            const { id } = await setData('products', form)
+            navigate(`/admin/${ id }`)
         } catch (error) {
             console.warn(error);
         }
@@ -51,6 +53,13 @@ const ProductEdit = () => {
         );
     });
 
+    // {
+    //     "id": "spice-dog",
+    //     "name": "Spice Dog",
+    //     "description": "Prepare the spice, it's very nice.",
+    //     "price": 799
+    // }
+
     return (
         <>
             { JSON.stringify(form) }
@@ -66,7 +75,7 @@ const ProductEdit = () => {
                 <button
                     type='button'
                     className='product-edit-button'
-                    onClick={ onCreateProduct } >
+                    onClick={ onProductCreate } >
                     Create new product
                 </button>
             </form>

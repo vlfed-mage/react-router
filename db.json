@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": "spice-dog",
-      "name": "Spice Dog",
-      "description": "Prepare the spice, it's very nice.",
-      "price": 799
-    },
-    {
       "id": "french-fries",
       "name": "French Fries",
       "description": "That side you've been missing.",
@@ -47,6 +41,12 @@
       "name": "The Wedge",
       "price": 888,
       "description": "Tasty sandwich to max your tastebuds."
+    },
+    {
+      "id": "spice-dog",
+      "name": "Spice Dog",
+      "price": 1233,
+      "description": "Prepare the spice, it's very tasty."
     }
   ]
 }
