@@ -1,7 +1,7 @@
 import React from 'react';
 
 import App from './app'
-import Header from '../header/header';
+import Header from '../header';
 import { css } from '@emotion/css';
 
 const appStyleWrapper = css`

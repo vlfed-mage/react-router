@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import Admin from '../admin';
-import { Products } from '../products';
-import HomePage from '../home-page';
+import Loadable from '../loadable';
+
+const Admin = Loadable(lazy(() => import('../admin')));
+const Products = Loadable(lazy(() => import('../products')));
+const HomePage = Loadable(lazy(() => import('../home-page')));
 
 const App = () => {
 	const [ authenticated ] = useState(true);
-	const routes = useRoutes([
+
+	return useRoutes([
 		{
 			path: '/',
-			element: <HomePage />
+			element: <HomePage/>
 		},
 		{
 			path: '/products/*',
-			element: <Products />
+			element: <Products/>
 		},
 		{
 			path: '/admin/*',
-			element: authenticated ? <Admin /> : <Navigate to='/' />
+			element: authenticated ? <Admin/> : <Navigate to='/'/>
 		},
 		{
 			path: '*',
-			element: <Navigate to='/' />
+			element: <Navigate to='/'/>
 		}
 	]);
-
-	return routes;
 };
 
 export default App;
