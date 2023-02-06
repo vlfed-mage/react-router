@@ -4,14 +4,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Services from '../../../services';
 
 const ProductDetails = () => {
-    const { getData } = Services(),
+    const { getItem } = Services(),
     { id } = useParams(),
     [ product, setProduct ] = useState(null),
 
     navigate = useNavigate();
 
     useEffect(() => {
-        getData('products', id)
+        getItem('products', id)
             .then((data) => setProduct(data))
             .catch((error) => {
                 console.warn(error);

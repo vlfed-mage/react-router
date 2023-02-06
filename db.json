@@ -1,6 +1,18 @@
 {
   "products": [
     {
+      "id": "the-wedge",
+      "name": "The Wedge",
+      "description": "Tasty sandwich to max your tastebuds.",
+      "price": 699
+    },
+    {
+      "id": "spice-dog",
+      "name": "Spice Dog",
+      "description": "Prepare the spice, it's very nice.",
+      "price": 799
+    },
+    {
       "id": "french-fries",
       "name": "French Fries",
       "description": "That side you've been missing.",
@@ -10,7 +22,7 @@
       "id": "soulless-salad",
       "name": "Soul-less Salad",
       "description": "Just in case you're peckish.",
-      "price": 6495
+      "price": 649
     },
     {
       "id": "cola-cola",
@@ -25,28 +37,16 @@
       "price": 449
     },
     {
+      "id": "wild-water",
+      "name": "Wild Water",
+      "description": "Spring water, wild and watery.",
+      "price": 299
+    },
+    {
       "id": "big-cheese",
       "name": "Big Cheese",
       "price": 899,
       "description": "Large burger, all the cheese."
-    },
-    {
-      "id": "the-wedge",
-      "name": "The Wedge",
-      "price": 888,
-      "description": "Tasty sandwich to max your tastebuds."
-    },
-    {
-      "id": "spice-dog",
-      "name": "Spice Dog",
-      "price": 1233,
-      "description": "Prepare the spice, it's very tasty."
-    },
-    {
-      "id": "wild-water",
-      "name": "Wild Water",
-      "price": 1234,
-      "description": "payload"
     }
   ]
 }
